@@ -1,0 +1,58 @@
+# .github/workflows/deploy.yml
+name: Deploy Static SvelteKit Site
+
+on:
+  push:
+    branches:
+      - main # or master
+
+# Sets permissions to allow deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  cancel-in-progress: true
+  group: pages
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      # The build step executes `npm run build` which runs Vite
+      # and uses adapter-static to output files to the 'build' folder.
+      - name: Build SvelteKit App
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # This must match the 'pages' option in your svelte.config.js
+          path: './build'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
