@@ -6,7 +6,7 @@
 	import { base } from '$app/paths';
 
 	function handleClick() {
-		window.open(`${base}/resources/curriculum_vitae.pdf`, '_blank');
+		window.open(`${base}/resources/cv.pdf`, '_blank');
 	}
 </script>
 
