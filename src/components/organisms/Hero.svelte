@@ -3,8 +3,10 @@
 	import Button from '../atoms/Button.svelte';
 	import Socials from '../molecules/Socials.svelte';
 
+	import { base } from '$app/paths';
+
 	function handleClick() {
-		window.open(`/resources/curriculum_vitae.pdf`, '_blank');
+		window.open(`${base}/resources/curriculum_vitae.pdf`, '_blank');
 	}
 </script>
 
