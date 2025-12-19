@@ -3,6 +3,8 @@
 	import { GitForkIcon } from '@indaco/svelte-iconoir/git-fork';
 	import { OpenNewWindowIcon } from '@indaco/svelte-iconoir/open-new-window';
 	import { EyeIcon } from '@indaco/svelte-iconoir/eye';
+	import { fade } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
 
 	const staticRepos = [
 		{
@@ -141,8 +143,13 @@
 		{/each}
 	</div>
 	<div class="grid">
-		{#each displayedRepos as { link, owner, repo, description, languageColor, language, stars, forks, demo }}
-			<div class="repo-card">
+		{#each displayedRepos as { link, owner, repo, description, languageColor, language, stars, forks, demo } (repo)}
+			<div
+				class="repo-card"
+				in:fade={{ duration: 300, delay: 200 }}
+				out:fade={{ duration: 200 }}
+				animate:flip={{ duration: 400 }}
+			>
 				<div class="card-content">
 					<div id="top-part">
 						<div class="info">
