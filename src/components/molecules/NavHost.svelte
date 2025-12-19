@@ -28,7 +28,7 @@
 					/></svg
 				>
 			</Nav>
-			<Nav href="#about" section="about" isSelected={y > 350 && y < 675}>
+			<Nav href="#about" section="about" isSelected={y >= 350 && y < 700}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"
@@ -40,7 +40,20 @@
 					/></svg
 				>
 			</Nav>
-			<Nav href="#projects" section="projects" isSelected={y > 675 && y < 1000}>
+			<Nav href="#skills" section="tech" isSelected={y >= 700 && y < 1100}>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					height="24px"
+					viewBox="0 -960 960 960"
+					width="24px"
+					fill="var(--accent)"
+					transform="scale(1.2)"
+					><path
+						d="M480-80 310-250l57-57 73 73v-512l-73 73-57-57 170-170 170 170-57 57-73-73v512l73-73 57 57L480-80Z"
+					/></svg
+				>
+			</Nav>
+			<Nav href="#projects" section="projects" isSelected={y >= 1100 && y < 1600}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					height="24px"
@@ -53,7 +66,7 @@
 					/></svg
 				>
 			</Nav>
-			<Nav href="#education" section="education" isSelected={y > 1000 && y < 2000}>
+			<Nav href="#education" section="education" isSelected={y >= 1600 && y < 2400}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					height="24px"
@@ -66,7 +79,7 @@
 					/></svg
 				>
 			</Nav>
-			<Nav href="#experience" section="experience" isSelected={y > 2000}>
+			<Nav href="#experience" section="experience" isSelected={y >= 2400}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"
@@ -106,20 +119,20 @@
 
 		ul {
 			display: flex;
-			gap: 4rem;
+			gap: 3rem;
 			justify-content: center;
 		}
 	}
 	@media (min-width: 868px) {
 		div {
-			width: 53rem;
+			width: 62rem;
 			border-radius: 12px;
 		}
 		.scrolled {
 			border-bottom: 1.5px solid var(--accent-opacity);
 			padding: 0.5rem 0;
 			margin-top: 0.5rem;
-			width: 53rem;
+			width: 62rem;
 			background-color: var(--elevation-five);
 			box-shadow: 0px 15px 8px -10px rgba(0, 0, 0, 0.4);
 		}

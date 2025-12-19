@@ -1,18 +1,5 @@
 <script>
 	import Tooltip from '../atoms/Tooltip.svelte';
-
-	// i didnt write this idk
-	let getAge = () => {
-		let birthDate = new Date('2002/12/29');
-		const ageMs = Date.now() - birthDate.getTime();
-		const preciseAge = (ageMs / 31536000000).toFixed(10);
-		return preciseAge;
-	};
-
-	let age = getAge();
-	setInterval(() => {
-		age = getAge();
-	}, 1000);
 </script>
 
 <section id="about" class="wrapper">
@@ -27,9 +14,9 @@
 				><a href="https://up.phinma.edu.ph/" target="_blank" rel="noopener noreferrer">
 					<span>PHINMA - University of Pangasinan</span></a
 				></Tooltip
-			>, specializing in game and mobile development. I have a strong foundation in Dart, Kotlin,
-			C#, and Python, and I actively pursue new challenges to enhance my skills and broaden my
-			experience. My focus is on developing engaging games and mobile applications that provide
+			>, specializing in mobile, game and web development. I have a strong foundation in Dart,
+			Kotlin, C#, and Python, and I actively pursue new challenges to enhance my skills and broaden
+			my experience. My focus is on developing engaging games and mobile applications that provide
 			seamless functionality and deliver captivating user experiences.
 		</p>
 	</div>

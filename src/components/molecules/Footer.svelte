@@ -5,9 +5,8 @@
 <hr />
 <footer class="wrapper">
 	<h6>
-		Website Forked from <a href="https://github.com/xafn/afn.im" target="_blank" rel="noreferrer"
-			>afn.im</a
-		>
+		Built & Refined by <strong>Kurt Petrola</strong> ┃ Inspired by
+		<a href="https://github.com/xafn/afn.im" target="_blank" rel="noreferrer">afn.im</a>
 	</h6>
 	<Socials />
 </footer>

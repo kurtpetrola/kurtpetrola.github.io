@@ -2,6 +2,7 @@
 	import { StarIcon } from '@indaco/svelte-iconoir/star';
 	import { GitForkIcon } from '@indaco/svelte-iconoir/git-fork';
 	import { OpenNewWindowIcon } from '@indaco/svelte-iconoir/open-new-window';
+	import { EyeIcon } from '@indaco/svelte-iconoir/eye';
 
 	const staticRepos = [
 		{
@@ -11,8 +12,10 @@
 			description: 'A simple stacking game made with Unity.',
 			languageColor: 'rgb(145, 121, 228)',
 			language: 'C#',
-			stars: 3,
-			forks: 0
+			stars: 2,
+			forks: 0,
+			demo: 'https://github.com/kurtpetrola/StackIT/releases/tag/v1.0',
+			category: 'Game'
 		},
 		{
 			link: 'https://github.com/kurtpetrola/pcsd',
@@ -23,7 +26,9 @@
 			languageColor: 'rgb(49, 120, 198)',
 			language: 'TypeScript',
 			stars: 0,
-			forks: 0
+			forks: 0,
+			demo: null,
+			category: 'Web'
 		},
 		{
 			link: 'https://github.com/kurtpetrola/fmd',
@@ -34,39 +39,118 @@
 			languageColor: 'rgb(0, 117, 186)',
 			language: 'Dart',
 			stars: 0,
-			forks: 0
+			forks: 0,
+			demo: 'https://github.com/kurtpetrola/fmd/releases/tag/v0.1.0',
+			category: 'Mobile'
 		},
 		{
 			link: 'https://github.com/kurtpetrola/ace',
 			owner: 'kurtpetrola',
 			repo: 'Academia Classroom Explorer',
-			description: 'A comprehensive platform for accessing academic information',
+			description: 'A comprehensive platform for accessing academic information.',
 			languageColor: 'rgb(0, 117, 186)',
 			language: 'Dart',
 			stars: 0,
-			forks: 0
+			forks: 0,
+			demo: 'https://github.com/kurtpetrola/ace/releases/tag/v1.0.0',
+			category: 'Mobile'
+		},
+		{
+			link: 'https://github.com/kurtpetrola/Swifty.git',
+			owner: 'kurtpetrola',
+			repo: 'Swifty',
+			description: 'A simple Swift programming language reviewer app. ',
+			languageColor: 'rgb(177, 37, 234)',
+			language: 'Kotlin',
+			stars: 0,
+			forks: 0,
+			demo: 'https://github.com/kurtpetrola/Swifty/releases/tag/v1.0.0',
+			category: 'Mobile'
+		},
+		{
+			link: 'https://github.com/kurtpetrola/LosHeroes.git',
+			owner: 'kurtpetrola',
+			repo: 'LosHeroes',
+			description:
+				'A turn-based role-playing game (RPG). The game tells the story of Magellan who stumbles upon a relic granting him the power to enslave mythical creatures. ',
+			languageColor: 'rgb(145, 121, 228)',
+			language: 'C#',
+			stars: 0,
+			forks: 0,
+			demo: null,
+			category: 'Game'
+		},
+		{
+			link: 'https://github.com/kurtpetrola/DogDays.git',
+			owner: 'kurtpetrola',
+			repo: 'DogDays',
+			description:
+				'A deceptively simple platformer game with a unique blend of charming graphics, catchy soundtrack, and devilishly difficult gameplay. ',
+			languageColor: 'rgb(145, 121, 228)',
+			language: 'C#',
+			stars: 0,
+			forks: 0,
+			demo: null,
+			category: 'Game'
+		},
+		{
+			link: '#',
+			owner: 'kurtpetrola',
+			repo: 'Future Project',
+			description: 'A placeholder for an upcoming exciting project!',
+			languageColor: 'var(--accent)',
+			language: 'Coming Soon',
+			stars: 0,
+			forks: 0,
+			demo: null,
+			category: 'Other'
 		}
 	];
+	let showAll = false;
+	const filters = ['All', 'Mobile', 'Web', 'Game'] as const;
+	type FilterType = (typeof filters)[number];
+	let activeFilter: FilterType = 'All';
+
+	$: filteredRepos =
+		activeFilter === 'All'
+			? staticRepos
+			: staticRepos.filter((repo) => repo.category === activeFilter);
+
+	$: displayedRepos = showAll ? filteredRepos : filteredRepos.slice(0, 4);
+
+	function toggleShowMore() {
+		showAll = !showAll;
+	}
+
+	function setFilter(filter: FilterType) {
+		activeFilter = filter;
+		showAll = false; // Reset view more when changing filter
+	}
 </script>
 
 <section class="wrapper" id="projects">
 	<div class="title">
 		<h2><span>code</span>:projects</h2>
 	</div>
+
+	<div class="filters">
+		{#each filters as filter}
+			<button class:active={activeFilter === filter} on:click={() => setFilter(filter)}>
+				{filter}
+			</button>
+		{/each}
+	</div>
 	<div class="grid">
-		{#each staticRepos as { link, owner, repo, description, languageColor, language, stars, forks }}
-			<a href={link} target="_blank" rel="noreferrer">
-				<div class="repo-card">
+		{#each displayedRepos as { link, owner, repo, description, languageColor, language, stars, forks, demo }}
+			<div class="repo-card">
+				<div class="card-content">
 					<div id="top-part">
 						<div class="info">
 							<img src="https://github.com/{owner}.png" alt="{owner}'s profile picture" id="pfp" />
 							<h6>{owner}</h6>
 						</div>
-						<div id="open">
-							<OpenNewWindowIcon color="var(--text-secondary)" size="20px" />
-						</div>
 					</div>
-					<div>
+					<div class="mid-part">
 						<h3>{repo}</h3>
 						<h6>{description}</h6>
 					</div>
@@ -89,13 +173,94 @@
 						</div>
 					</div>
 				</div>
-			</a>
+				<div class="card-actions">
+					<a href={link} target="_blank" rel="noreferrer" class="action-btn github">
+						<OpenNewWindowIcon color="currentColor" size="18px" />
+						<span>GitHub</span>
+					</a>
+					{#if demo}
+						<a href={demo} target="_blank" rel="noreferrer" class="action-btn demo">
+							<EyeIcon color="currentColor" size="18px" />
+							<span>Live Demo</span>
+						</a>
+					{/if}
+				</div>
+			</div>
 		{/each}
 	</div>
+
+	{#if staticRepos.length > 4}
+		<div class="view-more">
+			<button on:click={toggleShowMore}>
+				{showAll ? 'Show Less' : 'View More Projects'}
+			</button>
+		</div>
+	{/if}
 </section>
 
 <style lang="scss">
 	@import '../../styles/mixins.scss';
+
+	.filters {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin-bottom: 2.5rem;
+		flex-wrap: wrap;
+
+		button {
+			background: transparent;
+			border: 1px solid var(--elevation-four);
+			color: var(--text-secondary);
+			padding: 0.5rem 1.5rem;
+			border-radius: 20px;
+			cursor: pointer;
+			font-family: var(--font-two);
+			font-size: 0.85rem;
+			transition: all 0.3s var(--bezier-one);
+
+			&:hover {
+				border-color: var(--accent);
+				color: var(--accent);
+			}
+
+			&.active {
+				background-color: var(--accent);
+				border-color: var(--accent);
+				color: white;
+				box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.4);
+			}
+		}
+
+		@media (max-width: 868px) {
+			justify-content: flex-start;
+		}
+	}
+
+	.view-more {
+		display: flex;
+		justify-content: center;
+		margin-top: 2rem;
+
+		button {
+			background: transparent;
+			border: 1px solid var(--elevation-four);
+			color: var(--text-secondary);
+			padding: 0.75rem 2rem;
+			border-radius: 8px;
+			cursor: pointer;
+			font-family: var(--font-two);
+			font-size: 0.9rem;
+			transition: all 0.3s var(--bezier-one);
+
+			&:hover {
+				background-color: var(--elevation-one);
+				color: var(--accent);
+				border-color: var(--accent);
+				transform: translateY(-2px);
+			}
+		}
+	}
 
 	.title {
 		display: flex;
@@ -107,30 +272,80 @@
 		}
 	}
 	.repo-card {
-		padding: 1rem 1.25rem;
+		padding: 1.5rem;
 		background-color: var(--elevation-two);
-		border-radius: 8px;
-		min-height: 140px;
+		border-radius: 12px;
+		min-height: 200px;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
-		transition:
-			transform 0.3s var(--bezier-one),
-			box-shadow 0.3s var(--bezier-one);
 		justify-content: space-between;
+		gap: 1.5rem;
+		transition: all 0.3s var(--bezier-one);
 		backdrop-filter: blur(5px);
 		-webkit-backdrop-filter: blur(5px);
 		background-blend-mode: overlay;
 		border: 1px solid var(--elevation-four);
 
 		&:hover {
-			transform: translateY(-2px);
-			box-shadow: 0px 15px 25px -10px rgba(0, 0, 0, 0.25);
+			transform: translateY(-5px);
+			box-shadow: 0px 20px 30px -10px rgba(0, 0, 0, 0.3);
+			border-color: var(--accent-opacity);
+		}
+	}
 
-			#open {
-				filter: brightness(1.3);
+	.card-content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.mid-part {
+		h3 {
+			margin-bottom: 0.25rem;
+		}
+	}
+
+	.card-actions {
+		display: flex;
+		gap: 0.75rem;
+		margin-top: auto;
+	}
+
+	.action-btn {
+		text-decoration: none;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 1rem;
+		border-radius: 6px;
+		font-size: 0.85rem;
+		font-family: var(--font-two);
+		transition: all 0.2s var(--bezier-one);
+		border: 1px solid transparent;
+
+		&.github {
+			background-color: var(--elevation-three);
+			color: var(--text-primary);
+
+			&:hover {
+				background-color: var(--elevation-one);
+				border-color: var(--accent);
 			}
+		}
+
+		&.demo {
+			background-color: var(--accent-opacity);
+			color: var(--accent);
+
+			&:hover {
+				background-color: var(--accent);
+				color: white;
+			}
+		}
+
+		span {
+			color: inherit;
 		}
 	}
 
@@ -141,13 +356,6 @@
 		100% {
 			background-position: 1200px 0;
 		}
-	}
-
-	a {
-		text-decoration: none;
-		color: var(--text-primary);
-		height: 100%;
-		border-radius: 8px;
 	}
 
 	h2 {
@@ -163,11 +371,7 @@
 	#top-part {
 		display: flex;
 		justify-content: space-between;
-	}
-
-	#open {
-		height: 20px;
-		transition: filter 0.3s var(--bezier-one);
+		align-items: center;
 	}
 
 	span {
@@ -175,10 +379,7 @@
 	}
 
 	.grid {
-		gap: 0.8rem;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		gap: 1.5rem;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		margin-bottom: 3rem;
@@ -202,12 +403,12 @@
 
 	.info {
 		display: flex;
-		gap: 0.2rem;
+		gap: 0.4rem;
 		align-items: center;
 
 		&-container {
 			display: flex;
-			gap: 0.9rem;
+			gap: 1rem;
 		}
 	}
 
