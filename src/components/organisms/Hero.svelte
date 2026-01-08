@@ -2,11 +2,17 @@
 	import HeroImage from '../../components/atoms/HeroImage.svelte';
 	import Button from '../atoms/Button.svelte';
 	import Socials from '../molecules/Socials.svelte';
+	import { OpenNewWindowIcon } from '@indaco/svelte-iconoir/open-new-window';
+	import { SmartphoneDeviceIcon } from '@indaco/svelte-iconoir/smartphone-device';
 
 	import { base } from '$app/paths';
 
-	function handleClick() {
+	function handleCVClick() {
 		window.open(`${base}/resources/curriculum_vitae.pdf`, '_blank');
+	}
+
+	function handleAppsClick() {
+		window.open(`https://kurtpetrola-mobile.vercel.app`, '_blank');
 	}
 </script>
 
@@ -17,7 +23,18 @@
 		<div class="socials">
 			<Socials />
 		</div>
-		<Button side on:click={handleClick} on:keypress={handleClick}>Check out my CV ↗</Button>
+		<div class="cta-buttons">
+			<Button side on:click={handleCVClick} on:keypress={handleCVClick}>
+				<div class="btn-content">
+					Curriculum Vitae <OpenNewWindowIcon size="18px" />
+				</div>
+			</Button>
+			<Button on:click={handleAppsClick} on:keypress={handleAppsClick}>
+				<div class="btn-content">
+					Mobile Apps <SmartphoneDeviceIcon size="18px" />
+				</div>
+			</Button>
+		</div>
 	</div>
 	<HeroImage />
 </section>
@@ -48,7 +65,24 @@
 
 	.socials {
 		margin-top: 1rem;
-		margin-bottom: 1.7rem;
+		margin-bottom: 2rem;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		align-items: center;
+
+		@media screen and (max-width: 868px) {
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
+
+	.btn-content {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
 	}
 
 	h4 {
