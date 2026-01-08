@@ -1,11 +1,12 @@
 <script>
 	import Socials from './Socials.svelte';
+	const year = new Date().getFullYear();
 </script>
 
 <hr />
 <footer class="wrapper">
 	<h6>
-		Built & Refined by <strong>Kurt Petrola</strong> ┃ Inspired by
+		&copy; {year} <strong>Kurt Petrola</strong> &bull; Inspired by
 		<a href="https://github.com/xafn/afn.im" target="_blank" rel="noreferrer">afn.im</a>
 	</h6>
 	<Socials />
