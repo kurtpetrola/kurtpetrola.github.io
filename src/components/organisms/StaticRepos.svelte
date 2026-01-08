@@ -174,6 +174,8 @@
 						<h3>{repo}</h3>
 						<h6>{description}</h6>
 					</div>
+				</div>
+				<div class="card-footer">
 					<div class="info-container">
 						<div class="info">
 							<span class="dot" style="background-color: {languageColor}" />
@@ -192,18 +194,18 @@
 							{/if}
 						</div>
 					</div>
-				</div>
-				<div class="card-actions">
-					<a href={link} target="_blank" rel="noreferrer" class="action-btn github">
-						<OpenNewWindowIcon color="currentColor" size="18px" />
-						<span>GitHub</span>
-					</a>
-					{#if demo}
-						<a href={demo} target="_blank" rel="noreferrer" class="action-btn demo">
-							<EyeIcon color="currentColor" size="18px" />
-							<span>Live Demo</span>
+					<div class="card-actions">
+						<a href={link} target="_blank" rel="noreferrer" class="action-btn github">
+							<OpenNewWindowIcon color="currentColor" size="18px" />
+							<span>GitHub</span>
 						</a>
-					{/if}
+						{#if demo}
+							<a href={demo} target="_blank" rel="noreferrer" class="action-btn demo">
+								<EyeIcon color="currentColor" size="18px" />
+								<span>Live Demo</span>
+							</a>
+						{/if}
+					</div>
 				</div>
 			</div>
 		{/each}
@@ -329,7 +331,20 @@
 	.card-actions {
 		display: flex;
 		gap: 0.75rem;
+	}
+
+	.card-footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		margin-top: auto;
+		gap: 1rem;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.5rem;
+		}
 	}
 
 	.action-btn {
