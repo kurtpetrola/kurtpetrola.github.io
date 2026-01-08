@@ -98,6 +98,19 @@
 		{
 			link: '#',
 			owner: 'kurtpetrola',
+			repo: 'HomeWidgey',
+			description:
+				'A bold, Neo-Brutalist Flutter app for sharing real-time photos and videos directly to your friends home screen widgets.',
+			languageColor: 'rgb(0, 117, 186)',
+			language: 'Dart',
+			stars: 0,
+			forks: 0,
+			demo: null,
+			category: 'Mobile'
+		},
+		{
+			link: '#',
+			owner: 'kurtpetrola',
 			repo: 'Future Project',
 			description: 'A placeholder for an upcoming exciting project!',
 			languageColor: 'var(--accent)',
