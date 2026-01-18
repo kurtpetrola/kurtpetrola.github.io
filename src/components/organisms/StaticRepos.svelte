@@ -58,6 +58,32 @@
 			category: 'Mobile'
 		},
 		{
+			link: '#',
+			owner: 'kurtpetrola',
+			repo: 'KuryenteCheck',
+			description:
+				'A Crowd-Sourced Mobile App for Monitoring Electricity Outages and Voltage Fluctuations in Mangaldan, Pangasinan.',
+			languageColor: 'rgb(0, 117, 186)',
+			language: 'Dart',
+			stars: 0,
+			forks: 0,
+			demo: null,
+			category: 'Mobile'
+		},
+		{
+			link: '#',
+			owner: 'kurtpetrola',
+			repo: 'HomeWidgey',
+			description:
+				'A bold, Neo-Brutalist Flutter app for sharing real-time photos and videos directly to your friends home screen widgets.',
+			languageColor: 'rgb(0, 117, 186)',
+			language: 'Dart',
+			stars: 0,
+			forks: 0,
+			demo: null,
+			category: 'Mobile'
+		},
+		{
 			link: 'https://github.com/kurtpetrola/Swifty.git',
 			owner: 'kurtpetrola',
 			repo: 'Swifty',
@@ -94,19 +120,6 @@
 			forks: 0,
 			demo: null,
 			category: 'Game'
-		},
-		{
-			link: '#',
-			owner: 'kurtpetrola',
-			repo: 'HomeWidgey',
-			description:
-				'A bold, Neo-Brutalist Flutter app for sharing real-time photos and videos directly to your friends home screen widgets.',
-			languageColor: 'rgb(0, 117, 186)',
-			language: 'Dart',
-			stars: 0,
-			forks: 0,
-			demo: null,
-			category: 'Mobile'
 		},
 		{
 			link: '#',
