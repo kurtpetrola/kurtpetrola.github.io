@@ -3,21 +3,25 @@
 </script>
 
 <section id="about" class="wrapper">
-	<div class="text">
+	<div class="title">
 		<h2>about me</h2>
+	</div>
+	<div class="text">
 		<p>
 			Hello there! My name is Kurt, and I am an
 			<Tooltip tip={'🖥️'}>
 				<span>Information Technology</span>
 			</Tooltip>
-			graduate from <Tooltip
-				><a href="https://up.phinma.edu.ph/" target="_blank" rel="noopener noreferrer">
-					<span>PHINMA - University of Pangasinan</span></a
-				></Tooltip
-			>, specializing in mobile, game and web development. I have a strong foundation in Dart,
-			Kotlin, C#, and Python, and I actively pursue new challenges to enhance my skills and broaden
-			my experience. My focus is on developing engaging games and mobile applications that provide
-			seamless functionality and deliver captivating user experiences.
+			graduate who loves bridging the gap between logic and creativity.
+		</p>
+		<p>
+			My expertise lies in building immersive games with <span>Unity</span>, crafting seamless
+			mobile applications with <span>Flutter</span>, and developing dynamic websites using
+			<span>Svelte</span>. Currently, I'm expanding my horizons by deep-diving into the world of
+			<span>Artificial Intelligence and Machine Learning</span>.
+		</p>
+		<p>
+			When I'm not coding, you can find me leveling up in games, reading manga, or watching anime.
 		</p>
 	</div>
 </section>
@@ -27,18 +31,29 @@
 
 	section {
 		margin-bottom: 6rem;
-		gap: 4.5rem;
-		grid-template-columns: 1fr 1fr;
+		display: flex;
+		flex-direction: column;
 		align-items: center;
 	}
 
-	.text {
-		position: relative;
-		line-height: 1.75rem;
-		align-items: center;
+	.title {
 		display: flex;
 		justify-content: center;
+		margin-bottom: 2.5rem;
+		width: 100%;
+
+		@media (max-width: 868px) {
+			justify-content: left;
+		}
+	}
+
+	.text {
+		width: 100%;
+		max-width: 800px;
+		line-height: 1.75rem;
+		display: flex;
 		flex-direction: column;
+		gap: 1.5rem;
 	}
 
 	span {
@@ -50,28 +65,10 @@
 		color: var(--accent);
 		padding: 0.2rem 0.5rem 0.2rem;
 		width: fit-content;
-	}
-
-	a {
-		text-decoration: none;
+		display: inline-block; /* Fix for fit-content inside line */
 	}
 
 	h2 {
-		display: block;
-		margin-top: 1rem;
-		margin-bottom: 1rem;
-	}
-
-	@media (max-width: 868px) {
-		section {
-			display: flex;
-			flex-direction: column;
-			align-items: normal;
-		}
-
-		h2 {
-			display: block;
-			margin-bottom: 1rem;
-		}
+		display: inline-block; /* Matches EducationTimeline.svelte */
 	}
 </style>
