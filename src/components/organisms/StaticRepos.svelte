@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { StarIcon } from '@indaco/svelte-iconoir/star';
+	import { onMount } from 'svelte';
 	import { GitForkIcon } from '@indaco/svelte-iconoir/git-fork';
 	import { OpenNewWindowIcon } from '@indaco/svelte-iconoir/open-new-window';
 	import { EyeIcon } from '@indaco/svelte-iconoir/eye';
 	import { fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 
-	const staticRepos = [
+	let staticRepos = [
 		{
 			link: 'https://github.com/kurtpetrola/StackIT.git',
 			owner: 'kurtpetrola',
@@ -15,7 +16,7 @@
 			languageColor: 'rgb(145, 121, 228)',
 			language: 'C#',
 			stars: 2,
-			forks: 0,
+			forks: 1,
 			demo: 'https://github.com/kurtpetrola/StackIT/releases/tag/v1.0',
 			category: 'Game'
 		},
@@ -134,6 +135,35 @@
 			category: 'Other'
 		}
 	];
+
+	onMount(async () => {
+		const updatedRepos = await Promise.all(
+			staticRepos.map(async (repo) => {
+				if (!repo.link.includes('github.com')) return repo;
+
+				try {
+					const match = repo.link.match(/github\.com\/([^/]+)\/([^/]+?)(\.git)?$/);
+					if (!match) return repo;
+
+					const [_, owner, slug] = match;
+					const response = await fetch(`https://api.github.com/repos/${owner}/${slug}`);
+					if (!response.ok) return repo;
+
+					const data = await response.json();
+					return {
+						...repo,
+						stars: data.stargazers_count,
+						forks: data.forks_count
+					};
+				} catch (error) {
+					console.error(`Failed to fetch stats for ${repo.repo}`, error);
+					return repo;
+				}
+			})
+		);
+		staticRepos = updatedRepos;
+	});
+
 	let showAll = false;
 	const filters = ['All', 'Mobile', 'Web', 'Game'] as const;
 	type FilterType = (typeof filters)[number];
