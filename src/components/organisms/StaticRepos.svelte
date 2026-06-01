@@ -74,7 +74,7 @@
 		{
 			link: '#',
 			owner: 'kurtpetrola',
-			repo: 'HomeWidgey',
+			repo: 'Widgey',
 			description:
 				'A bold, Neo-Brutalist Flutter app for sharing real-time photos and videos directly to your friends home screen widgets.',
 			languageColor: 'rgb(0, 117, 186)',
