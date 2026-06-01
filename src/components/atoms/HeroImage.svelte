@@ -14,7 +14,7 @@
 		role="img"
 		style:background-image="url(resources/katopic.jpg)"
 		style:transform="perspective(500px) {zoom ? 'scale(1.05)' : ''}"
-	/>
+	></div>
 </div>
 
 <style lang="scss">

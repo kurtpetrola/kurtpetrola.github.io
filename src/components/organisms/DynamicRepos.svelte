@@ -51,7 +51,7 @@
 						</div>
 						<div class="info-container">
 							<div class="info">
-								<span class="dot" style="background-color: {languageColor}" />
+								<span class="dot" style="background-color: {languageColor}"></span>
 								<h6>{language}</h6>
 							</div>
 							<div class="info">
@@ -72,7 +72,7 @@
 			{/each}
 		{:else}
 			{#each Array(4) as _}
-				<div class="repo-card shimmer" />
+				<div class="repo-card shimmer"></div>
 			{/each}
 		{/if}
 	</div>

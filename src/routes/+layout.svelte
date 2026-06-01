@@ -19,7 +19,7 @@
 </span>
 
 <style>
-	.loading * {
+	/* .loading * {
 		transition: none;
-	}
+	} */
 </style>

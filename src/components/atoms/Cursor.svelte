@@ -27,7 +27,7 @@
 	class="pointer-ring"
 	style="transform: translateX({mouseX - 15}px) translateY({mouseY - 15}px) scale({scale})"
 	style:opacity
-/>
+></div>
 
 <style lang="scss">
 	.pointer-ring {
