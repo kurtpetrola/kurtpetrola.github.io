@@ -59,7 +59,7 @@
 			category: 'Mobile'
 		},
 		{
-			link: '#',
+			link: 'https://github.com/kurtpetrola/kuryentecheck',
 			owner: 'kurtpetrola',
 			repo: 'KuryenteCheck',
 			description:
