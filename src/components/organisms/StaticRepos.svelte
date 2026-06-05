@@ -238,10 +238,12 @@
 						</div>
 					</div>
 					<div class="card-actions">
-						<a href={link} target="_blank" rel="noreferrer" class="action-btn github">
-							<OpenNewWindowIcon color="currentColor" size="18px" />
-							<span>GitHub</span>
-						</a>
+						{#if link && link !== '#'}
+							<a href={link} target="_blank" rel="noreferrer" class="action-btn github">
+								<OpenNewWindowIcon color="currentColor" size="18px" />
+								<span>GitHub</span>
+							</a>
+						{/if}
 						{#if demo}
 							<a href={demo} target="_blank" rel="noreferrer" class="action-btn demo">
 								<EyeIcon color="currentColor" size="18px" />
