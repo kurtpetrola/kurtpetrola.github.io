@@ -8,7 +8,7 @@
 	import { base } from '$app/paths';
 
 	function handleCVClick() {
-		window.open(`${base}/resources/curriculum_vitae.pdf`, '_blank');
+		window.open(`${base}/resources/resume.pdf`, '_blank');
 	}
 
 	function handleAppsClick() {
@@ -26,7 +26,7 @@
 		<div class="cta-buttons">
 			<Button side on:click={handleCVClick} on:keypress={handleCVClick}>
 				<div class="btn-content">
-					Curriculum Vitae <OpenNewWindowIcon size="18px" />
+					Resume <OpenNewWindowIcon size="18px" />
 				</div>
 			</Button>
 			<Button on:click={handleAppsClick} on:keypress={handleAppsClick}>
