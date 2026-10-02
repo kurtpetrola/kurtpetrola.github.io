@@ -2,7 +2,7 @@
 	import Icon from '@iconify/svelte';
 
 	const skills = [
-		{ name: 'Flutter', icon: 'logos:flutter' },
+		{ name: 'Flutter', icon: 'logos:flutter-icon' },
 		{ name: 'Dart', icon: 'logos:dart' },
 		{ name: 'Firebase', icon: 'logos:firebase-icon' },
 		{ name: 'GCP', icon: 'logos:google-cloud' },
